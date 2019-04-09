@@ -24,6 +24,16 @@ import se.uu.ub.cora.logger.Logger;
 
 public class Log4jLogger implements Logger {
 
+	private org.apache.logging.log4j.Logger log4jLogger;
+
+	public static Log4jLogger usingLog4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
+		return new Log4jLogger(log4jLogger);
+	}
+
+	private Log4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
+		this.log4jLogger = log4jLogger;
+	}
+
 	@Override
 	public void logFatalUsingMessage(String message) {
 		// TODO Auto-generated method stub
@@ -88,6 +98,10 @@ public class Log4jLogger implements Logger {
 	public void logTraceUsingMessageSupplier(Supplier<String> messageSupplier) {
 		// TODO Auto-generated method stub
 
+	}
+
+	org.apache.logging.log4j.Logger getLog4jLogger() {
+		return log4jLogger;
 	}
 
 }

@@ -19,14 +19,32 @@
 
 package se.uu.ub.cora.log4j;
 
+import static org.testng.Assert.assertSame;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import se.uu.ub.cora.logger.Logger;
 
 public class Log4jLoggerTest {
+	private Log4jLoggerSpy log4jLogger;
+	private Log4jLogger logger;
+
+	@BeforeMethod
+	public void beforeMethod() {
+		log4jLogger = new Log4jLoggerSpy();
+		logger = Log4jLogger.usingLog4jLogger(log4jLogger);
+	}
+
 	@Test
 	public void testInit() throws Exception {
-		org.apache.logging.log4j.Logger log4jLogger;
-		Logger logger = new Log4jLogger();
+		org.apache.logging.log4j.Logger log4jLogger = new Log4jLoggerSpy();
+		Logger logger = Log4jLogger.usingLog4jLogger(log4jLogger);
+	}
+
+	@Test
+	public void testGetLogger() throws Exception {
+		org.apache.logging.log4j.Logger log = logger.getLog4jLogger();
+		assertSame(log, log4jLogger);
 	}
 }
