@@ -27,6 +27,6 @@ public class Log4jLoggerTest {
 	@Test
 	public void testInit() throws Exception {
 		org.apache.logging.log4j.Logger log4jLogger;
-		Logger logger = new Log4jLogger(log4jLogger);
+		Logger logger = new Log4jLogger();
 	}
 }
