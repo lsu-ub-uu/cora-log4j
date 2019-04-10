@@ -19,6 +19,9 @@
 
 package se.uu.ub.cora.log4j;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -29,6 +32,23 @@ import org.apache.logging.log4j.util.MessageSupplier;
 import org.apache.logging.log4j.util.Supplier;
 
 public class Log4jLoggerSpy implements Logger {
+
+	public List<String> fatalMessages = new ArrayList<>();
+	public List<Throwable> fatalThrowables = new ArrayList<>();
+
+	public List<String> errorMessages = new ArrayList<>();
+	public List<Throwable> errorThrowables = new ArrayList<>();
+
+	public List<String> warnMessages = new ArrayList<>();
+	public List<Throwable> warnThrowables = new ArrayList<>();
+
+	public List<String> infoMessages = new ArrayList<>();
+
+	public List<String> debugMessages = new ArrayList<>();
+	boolean debugEnabled = false;
+
+	public List<String> traceMessages = new ArrayList<>();
+	boolean traceEnabled = false;
 
 	@Override
 	public void catching(Level level, Throwable t) {
@@ -176,8 +196,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void debug(String message) {
-		// TODO Auto-generated method stub
-
+		debugMessages.add(message);
 	}
 
 	@Override
@@ -487,8 +506,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void error(String message) {
-		// TODO Auto-generated method stub
-
+		errorMessages.add(message);
 	}
 
 	@Override
@@ -505,8 +523,8 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void error(String message, Throwable t) {
-		// TODO Auto-generated method stub
-
+		errorMessages.add(message);
+		errorThrowables.add(t);
 	}
 
 	@Override
@@ -751,7 +769,6 @@ public class Log4jLoggerSpy implements Logger {
 	@Override
 	public void fatal(Message msg) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -798,8 +815,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void fatal(String message) {
-		// TODO Auto-generated method stub
-
+		fatalMessages.add(message);
 	}
 
 	@Override
@@ -816,8 +832,8 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void fatal(String message, Throwable t) {
-		// TODO Auto-generated method stub
-
+		fatalMessages.add(message);
+		fatalThrowables.add(t);
 	}
 
 	@Override
@@ -1115,8 +1131,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void info(String message) {
-		// TODO Auto-generated method stub
-
+		infoMessages.add(message);
 	}
 
 	@Override
@@ -1283,7 +1298,7 @@ public class Log4jLoggerSpy implements Logger {
 	@Override
 	public boolean isDebugEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return debugEnabled;
 	}
 
 	@Override
@@ -1342,8 +1357,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public boolean isTraceEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return traceEnabled;
 	}
 
 	@Override
@@ -1823,8 +1837,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void trace(String message) {
-		// TODO Auto-generated method stub
-
+		traceMessages.add(message);
 	}
 
 	@Override
@@ -2188,8 +2201,7 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void warn(String message) {
-		// TODO Auto-generated method stub
-
+		warnMessages.add(message);
 	}
 
 	@Override
@@ -2206,8 +2218,8 @@ public class Log4jLoggerSpy implements Logger {
 
 	@Override
 	public void warn(String message, Throwable t) {
-		// TODO Auto-generated method stub
-
+		warnMessages.add(message);
+		warnThrowables.add(t);
 	}
 
 	@Override

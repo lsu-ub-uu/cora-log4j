@@ -22,82 +22,77 @@ import java.util.function.Supplier;
 
 import se.uu.ub.cora.logger.Logger;
 
-public class Log4jLogger implements Logger {
+public class Cora4jLogger implements Logger {
 
 	private org.apache.logging.log4j.Logger log4jLogger;
 
-	public static Log4jLogger usingLog4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
-		return new Log4jLogger(log4jLogger);
+	public static Cora4jLogger usingLog4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
+		return new Cora4jLogger(log4jLogger);
 	}
 
-	private Log4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
+	private Cora4jLogger(org.apache.logging.log4j.Logger log4jLogger) {
 		this.log4jLogger = log4jLogger;
 	}
 
 	@Override
 	public void logFatalUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.fatal(message);
 	}
 
 	@Override
 	public void logFatalUsingMessageAndException(String message, Exception exception) {
-		// TODO Auto-generated method stub
+		log4jLogger.fatal(message, exception);
 
 	}
 
 	@Override
 	public void logErrorUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.error(message);
 	}
 
 	@Override
 	public void logErrorUsingMessageAndException(String message, Exception exception) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.error(message, exception);
 	}
 
 	@Override
 	public void logWarnUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.warn(message);
 	}
 
 	@Override
 	public void logWarnUsingMessageAndException(String message, Exception exception) {
-		// TODO Auto-generated method stub
+		log4jLogger.warn(message, exception);
 
 	}
 
 	@Override
 	public void logInfoUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.info(message);
 	}
 
 	@Override
 	public void logDebugUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.debug(message);
 	}
 
 	@Override
 	public void logDebugUsingMessageSupplier(Supplier<String> messageSupplier) {
-		// TODO Auto-generated method stub
-
+		if (log4jLogger.isDebugEnabled()) {
+			log4jLogger.debug(messageSupplier.get());
+		}
 	}
 
 	@Override
 	public void logTraceUsingMessage(String message) {
-		// TODO Auto-generated method stub
-
+		log4jLogger.trace(message);
 	}
 
 	@Override
 	public void logTraceUsingMessageSupplier(Supplier<String> messageSupplier) {
-		// TODO Auto-generated method stub
-
+		if (log4jLogger.isTraceEnabled()) {
+			log4jLogger.trace(messageSupplier.get());
+		}
 	}
 
 	org.apache.logging.log4j.Logger getLog4jLogger() {
