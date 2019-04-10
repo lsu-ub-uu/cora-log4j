@@ -28,21 +28,29 @@ import se.uu.ub.cora.logger.Logger;
 import se.uu.ub.cora.logger.LoggerFactory;
 
 public class Cora4jLoggerFactory implements LoggerFactory {
-	private static Map<String, Logger> startedLoggers = new HashMap<>();
+	private static Map<String, Logger> createdLoggers = new HashMap<>();
 
 	@Override
 	public Logger factorForClass(Class<? extends Object> javaClass) {
 		String className = javaClass.getName();
 		ensureLoggerIsFactored(javaClass, className);
-		return startedLoggers.get(className);
+		return createdLoggers.get(className);
 	}
 
 	private static void ensureLoggerIsFactored(Class<? extends Object> javaClass,
 			String className) {
-		if (!startedLoggers.containsKey(className)) {
-			Cora4jLogger log4jLogger = createCora4jLoggerUsingClass(javaClass);
-			startedLoggers.put(className, log4jLogger);
+		if (loggerForClassNotCreated(className)) {
+			createLoggerForClass(javaClass, className);
 		}
+	}
+
+	private static boolean loggerForClassNotCreated(String className) {
+		return !createdLoggers.containsKey(className);
+	}
+
+	private static void createLoggerForClass(Class<? extends Object> javaClass, String className) {
+		Cora4jLogger log4jLogger = createCora4jLoggerUsingClass(javaClass);
+		createdLoggers.put(className, log4jLogger);
 	}
 
 	private static Cora4jLogger createCora4jLoggerUsingClass(Class<? extends Object> javaClass) {
