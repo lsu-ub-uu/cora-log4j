@@ -25,7 +25,7 @@
 
 	<properties>
 		<logger.version>2.4.0</logger.version>
-		<apachelog4j.version>2.14.1</apachelog4j.version>
+		<apachelog4j.version>2.15.0</apachelog4j.version>
 	</properties>
 
 	<scm>
