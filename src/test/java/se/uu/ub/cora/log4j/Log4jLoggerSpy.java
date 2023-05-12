@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.message.EntryMessage;
+import org.apache.logging.log4j.message.FlowMessageFactory;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFactory;
 import org.apache.logging.log4j.util.MessageSupplier;
@@ -2363,6 +2364,12 @@ public class Log4jLoggerSpy implements Logger {
 			Object p5, Object p6, Object p7, Object p8, Object p9) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public FlowMessageFactory getFlowMessageFactory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
