@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>2.5.0</version>
+		<version>3.2.0</version>
 	</parent>
 
 	<artifactId>log4j</artifactId>
@@ -25,7 +25,7 @@
 
 	<properties>
 		<logger.version>2.10.0</logger.version>
-		<apachelog4j.version>2.23.0</apachelog4j.version>
+		<apachelog4j.version>2.26.1</apachelog4j.version>
 	</properties>
 
 	<scm>
